@@ -3,9 +3,6 @@ package com.assignment.ticketer20.API.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by Osama on 17/9/2017.
- */
 
 public class Enquiry {
 

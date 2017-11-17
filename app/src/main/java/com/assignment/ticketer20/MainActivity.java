@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "Your booking is: "+response.body().getTicket(), Toast.LENGTH_SHORT).show();
                             editor.putBoolean("hasBooking", true);
                             editor.putString("id", response.body().get_id());
+                            editor.putString("ticket", response.body().getTicket());
                             Log.e("MainActivity#86>>>>>", response.body().get_id());
                             editor.commit();
 
@@ -151,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<Enquiry>>() {
             @Override
             public void onResponse(Call<List<Enquiry>> call, Response<List<Enquiry>> response) {
-                Toast.makeText(MainActivity.this, "Booked: " + response.body().get(0).getBooked(), Toast.LENGTH_SHORT).show();
+               /* Toast.makeText(MainActivity.this, "Booked: " + response.body().get(0).getBooked(), Toast.LENGTH_SHORT).show();*/  //samawi
                 booked = Integer.parseInt(response.body().get(0).getBooked());
             }
 

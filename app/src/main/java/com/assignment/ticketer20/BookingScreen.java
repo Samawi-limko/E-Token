@@ -61,7 +61,7 @@ public class BookingScreen extends AppCompatActivity {
 
         getTicket(shared.getString("id", ""));
         Log.e("BookingScreen#63>>>", ticketNum);
-        Toast.makeText(this, shared.getString("id", ""), Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, shared.getString("id", ""), Toast.LENGTH_SHORT).show();   Samawi
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,29 +106,6 @@ public class BookingScreen extends AppCompatActivity {
             }
         });
 
-        Timer timer = new Timer ();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                Retro();
-            }
-        }, 10000, 60000);
-
-        new Thread(new Runnable() {
-            int lastMinute;
-            int currentMinute;
-            @Override
-            public void run() {
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTimeInMillis(System.currentTimeMillis());
-                currentMinute = calendar.get(Calendar.MINUTE);
-                lastMinute = currentMinute;
-                if (currentMinute != lastMinute) {
-                    lastMinute = currentMinute;
-
-                }
-            }
-        }).run();
     }
     
     public void deleteBooking(String id) {
@@ -161,7 +138,7 @@ public class BookingScreen extends AppCompatActivity {
 
     public void postpone(String id) {
 
-        if (booked < Integer.parseInt (shared.getString("ticket", ""))+1) {
+        if (booked < Integer.parseInt(shared.getString("ticket", "0"))) {
             Toast.makeText(this, "You cannot postpone", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -182,7 +159,7 @@ public class BookingScreen extends AppCompatActivity {
                 yourNum.setText(response.body().getTicket());
                 SharedPreferences.Editor editor = shared.edit();
                 editor.putString("ticket", response.body().getTicket());
-                editor.apply();
+                editor.commit();
             }
 
             @Override
